@@ -86,19 +86,7 @@ This workflow ensures **atomic and consistent financial operations** similar to 
 
 ---
 
-## 📁 Project Structure
 
-```
-SecureLedger/
-│
-├── controllers/     # Request handling logic
-├── routes/          # API endpoints
-├── models/          # Database schemas
-├── services/        # Core banking logic
-├── middleware/      # Authentication & validation
-├── config/          # Database & environment setup
-└── server.js        # Application entry point
-```
 
 ---
 
@@ -123,21 +111,6 @@ Server runs at:
 ```
 http://localhost:PORT
 ```
-
----
-
-## 🔑 Example API Endpoints
-
-| Method | Endpoint            | Description           |
-| ------ | ------------------- | --------------------- |
-| POST   | `/api/auth/login`   | User login            |
-| GET    | `/api/account`      | Fetch account details |
-| GET    | `/api/balance`      | Check balance         |
-| POST   | `/api/transfer`     | Transfer funds        |
-| GET    | `/api/transactions` | Transaction history   |
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -181,6 +154,21 @@ SecureLedger/
 ├── .env                    # Environment variables
 └── .gitignore              # Git ignore rules
 ```
+---
+
+## 🔑 Example API Endpoints
+
+| Method | Endpoint            | Description           |
+| ------ | ------------------- | --------------------- |
+| POST   | `/api/auth/login`   | User login            |
+| GET    | `/api/account`      | Fetch account details |
+| GET    | `/api/balance`      | Check balance         |
+| POST   | `/api/transfer`     | Transfer funds        |
+| GET    | `/api/transactions` | Transaction history   |
+
+---
+
+
 ## 📬 API Testing (Postman Example)
 
 Add screenshots inside `/docs/` folder:
