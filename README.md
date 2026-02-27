@@ -1,59 +1,88 @@
 # 🔐 SecureLedger — Banking Backend System
 
-SecureLedger is a **modern banking backend system** designed to simulate reflect real-world financial infrastructure.
-The project focuses on how secure digital banking systems process authentication, account operations, and transactions while maintaining data integrity, security, and scalability.
+<p align="center">
+  <b>A Modern Ledger-Driven Banking Backend</b><br>
+  Secure • Scalable • Transaction-Safe
+</p>
+
+<p align="center">
+
+![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js\&logoColor=white)
+![Express](https://img.shields.io/badge/Framework-Express.js-000000?logo=express\&logoColor=white)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb\&logoColor=white)
+![JWT](https://img.shields.io/badge/Auth-JWT-black?logo=jsonwebtokens)
+![REST API](https://img.shields.io/badge/API-REST-blue)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Project-orange)
+
+</p>
 
 ---
 
 ## 🚀 Project Overview
 
-SecureLedger demonstrates the internal working of a banking system — from user login to transaction completion — using industry-style backend architecture.
+**SecureLedger** is a modern banking backend system designed to simulate real-world financial infrastructure.
 
-This project is built as a **learning + portfolio-grade system** to understand:
+The project demonstrates how secure digital banking platforms handle:
 
-* How banking APIs work
-* Transaction processing flow
-* Secure authentication & authorization
-* Ledger-based transaction recording
-* Backend system design used in fintech platforms
+* Authentication & authorization
+* Account operations
+* Atomic money transfers
+* Ledger-based accounting
+* Secure transaction processing
+
+Built as a **portfolio-grade backend system**, SecureLedger focuses on real fintech architecture used in banking systems.
 
 ---
 
 ## 🧠 Core Features
 
-✅ User Authentication & Authorization
+✅ Secure User Authentication & Authorization
 ✅ Account Management System
-✅ Balance Inquiry
-✅ Money Transfer Workflow
-✅ Transaction Ledger Recording
-✅ Secure API Handling
+✅ Balance Inquiry System
+✅ Atomic Money Transfer Workflow
+✅ Double-Entry Ledger Recording
+✅ Secure REST API Handling
 ✅ Error Handling & Validation
-✅ Modular Backend Architecture
+✅ Modular & Scalable Architecture
 
 ---
 
 ## ⚙️ Tech Stack
 
-*(Update according to your implementation)*
-
-* **Backend:** Node.js / Express.js
-* **Database:** MongoDB / MySQL / PostgreSQL
-* **Authentication:** JWT (JSON Web Tokens)
-* **API Style:** REST API
-* **Version Control:** Git & GitHub
+| Layer            | Technology            |
+| ---------------- | --------------------- |
+| Backend          | Node.js + Express.js  |
+| Database         | MongoDB               |
+| Authentication   | JWT (JSON Web Tokens) |
+| API Architecture | REST API              |
+| Version Control  | Git & GitHub          |
 
 ---
 
 ## 🏗️ System Workflow
 
-1. User sends request from Client App.
-2. Request passes through API layer.
-3. Authentication service validates user.
-4. Core banking services process action.
-5. Transaction is verified and executed.
-6. Ledger records transaction details.
-7. Database updates account balances.
-8. Response returned to user dashboard.
+```mermaid
+flowchart LR
+A[Client Request] --> B[API Layer]
+B --> C[Authentication Middleware]
+C --> D[Banking Service Logic]
+D --> E[Transaction Validation]
+E --> F[Ledger Entry Creation]
+F --> G[Database Commit]
+G --> H[Response to Client]
+```
+
+This workflow ensures **atomic and consistent financial operations** similar to real banking systems.
+
+---
+
+## 🧩 Architecture Diagram
+
+> Add your exported diagram later inside `/docs/architecture.png`
+
+```md
+![SecureLedger Architecture](./docs/architecture.png)
+```
 
 ---
 
@@ -63,11 +92,11 @@ This project is built as a **learning + portfolio-grade system** to understand:
 SecureLedger/
 │
 ├── controllers/     # Request handling logic
-├── routes/          # API routes
+├── routes/          # API endpoints
 ├── models/          # Database schemas
-├── services/        # Business logic
-├── middleware/      # Auth & validation
-├── config/          # DB & environment configs
+├── services/        # Core banking logic
+├── middleware/      # Authentication & validation
+├── config/          # Database & environment setup
 └── server.js        # Application entry point
 ```
 
@@ -79,17 +108,17 @@ SecureLedger/
 # Clone repository
 git clone https://github.com/your-username/SecureLedger.git
 
-# Move into project
+# Enter project
 cd SecureLedger
 
 # Install dependencies
 npm install
 
-# Start server
+# Start development server
 npm run dev
 ```
 
-Server runs on:
+Server runs at:
 
 ```
 http://localhost:PORT
@@ -99,40 +128,101 @@ http://localhost:PORT
 
 ## 🔑 Example API Endpoints
 
-| Method | Endpoint          | Description         |
-| ------ | ----------------- | ------------------- |
-| POST   | /api/auth/login   | User login          |
-| GET    | /api/account      | Get account details |
-| GET    | /api/balance      | Check balance       |
-| POST   | /api/transfer     | Transfer funds      |
-| GET    | /api/transactions | Transaction history |
+| Method | Endpoint            | Description           |
+| ------ | ------------------- | --------------------- |
+| POST   | `/api/auth/login`   | User login            |
+| GET    | `/api/account`      | Fetch account details |
+| GET    | `/api/balance`      | Check balance         |
+| POST   | `/api/transfer`     | Transfer funds        |
+| GET    | `/api/transactions` | Transaction history   |
+
+---
+
+## 📁 Project Structure
+
+```
+SecureLedger/
+│
+├── Src/
+│   ├── controllers/        # Request handling logic
+│   │   ├── auth.controllers.js
+│   │   ├── account.controller.js
+│   │   └── transcation.controller.js
+│   │
+│   ├── routes/             # API routes
+│   │   ├── auth.routes.js
+│   │   ├── account.routes.js
+│   │   └── transaction.routes.js
+│   │
+│   ├── models/             # Database schemas
+│   │   ├── user.model.js
+│   │   ├── account.model.js
+│   │   ├── transaction.model.js
+│   │   ├── ledger.model.js
+│   │   └── blacklist.model.js
+│   │
+│   ├── services/           # Business logic
+│   │   └── email.service.js
+│   │
+│   ├── middleware/         # Auth & validation
+│   │   └── auth.middleware.js
+│   │
+│   ├── config/             # DB & environment configs
+│   │   └── db.js
+│   │
+│   ├── templates/          # Email templates
+│   │   ├── welcome.email.html
+│   │   └── login.email.html
+│   │
+│   └── App.js              # Express app configuration
+│
+├── server.js               # Application entry point
+├── package.json            # Dependencies
+├── .env                    # Environment variables
+└── .gitignore              # Git ignore rules
+```
+## 📬 API Testing (Postman Example)
+
+Add screenshots inside `/docs/` folder:
+
+```md
+![API Test](./docs/postman-test.png)
+```
+
+---
+
+## 🗄️ Database Schema (Optional)
+
+```md
+![Database Schema](./docs/database-schema.png)
+```
 
 ---
 
 ## 🔒 Security Concepts Implemented
 
-* JWT-based authentication
-* Request validation
-* Secure transaction flow
-* Ledger-based record keeping
-* Error & exception handling
+🔐 JWT Authentication
+🧾 Ledger-Based Accounting System
+🛡️ Transaction Atomicity using DB Sessions
+✅ Request Validation
+⚠️ Structured Error Handling
 
 ---
 
 ## 📈 Future Improvements
 
-* Fraud detection module
-* Rate limiting & API gateway
-* Microservices architecture
-* Queue-based transaction processing
-* Email/SMS notification service
-* Admin dashboard
+* Fraud Detection Engine
+* Rate Limiting & API Gateway
+* Microservices Architecture
+* Queue-Based Transaction Processing
+* Email / SMS Notifications
+* Admin Dashboard
 
 ---
 
 ## 🎯 Purpose
 
-This project is created to deeply understand **how real banking backend systems operate internally** and to showcase backend engineering skills for internships and placements.
+This project is built to deeply understand how **real banking backend systems operate internally** and to showcase backend engineering skills for internships and placements.
 
 ---
 
@@ -143,4 +233,6 @@ Backend Developer | Computer Science Student
 
 ---
 
-⭐ If you find this project useful, consider giving it a star!
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub!
