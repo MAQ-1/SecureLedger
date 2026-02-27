@@ -1,6 +1,7 @@
 const userModel=require('../models/user.model');
 const jwt=require('jsonwebtoken');
 const emailService=require('../services/email.service');
+const tokenBlackListModel=require('../models/blacklist.model');
 
 // User Registration
 // @route POST /api/auth/register
@@ -102,5 +103,37 @@ async function userlogin(req,res){
     }
 }
 
+// user logout 
+async function userLogout(req,res){
+    try{
+         
+        // Get token from cookies or Authorization header
+        const token = req.cookies.token || req.headers.authorization?.split(" ")[1]; 
+        if(!token){
+            return res.status(400).json({
+                message:"No token provided for logout.",
+                status:"error"
+            })
+        }
+     
+        //clear the cookie
+        res.cookie("token","");
 
-module.exports={userRegister,userlogin};
+        // blacklist the token
+        await tokenBlackListModel.create({token:token});
+
+        return res.status(200).json({
+            message:"User logged out successfully."
+        })
+
+    }catch(error){
+        console.error("Error while logging out the user:",error);
+        res.status(500).json({
+            message:"Something went wrong while logging out the user.",
+            error:error.message
+        })
+    }   
+}
+
+
+module.exports={userRegister,userlogin,userLogout};

@@ -14,6 +14,9 @@ const authRouter=require('./routes/auth.routes');
 const accountRouter=require('./routes/account.routes');
 const transactionRouter=require('./routes/transaction.routes');
 
+app.get("/",(req,res)=>{
+    res.send("Welcome to the Banking System API");
+});
 
 // -USe routers
 app.use("/api/auth", authRouter);

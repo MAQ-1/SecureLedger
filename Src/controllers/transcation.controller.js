@@ -141,6 +141,85 @@ async function createTransaction(req,res){
     }
 }
 
+
+// Initial transaction creation steps:
+
+async function createInitialTransaction(req,res){
+    try{
+          const { toAccount, amount, idempotencyKey } = req.body;
+
+          if(!toAccount || !amount || !idempotencyKey){
+            return res.status(400).json({
+                message:"Missing required fields. Please provide toAccount, amount, and idempotencyKey."
+            });
+          }
+
+        //   find receiver account
+            const toUserAccount =await accountModel.findOne({_id: toAccount})
+            if(!toUserAccount){
+                return res.status(404).json({
+                    message:"Receiver account not found."
+                });
+            }
+
+        // user account 
+        const fromUserAccount = await accountModel.findOne({
+                user: req.user._id
+         })
+        
+        //  start transaction session
+        const session = await mongoose.startSession();
+        session.startTransaction();
+      
+        // create transaction with pending status
+        const transaction = new transactionModel({
+            fromAccount: fromUserAccount._id,
+            toAccount,
+            amount,
+            idempotencyKey,
+            status: "PENDING"
+        });
+
+        await ledgerModel.create([{
+            account: fromUserAccount._id,
+            amount: amount,
+            transaction: transaction._id,
+            type: "DEBIT"
+        }], { session })
+
+
+        await ledgerModel.create([{
+            account: toAccount,
+            amount: amount,
+            transaction: transaction._id,
+            type: "CREDIT"
+        }], { session })
+
+        await ledgerModel.create([{
+            account: toAccount,
+            amount: amount,
+            transaction: transaction._id,
+            type: "CREDIT"
+        }], { session })
+
+
+         await session.commitTransaction()
+        session.endSession()
+
+        return res.status(201).json({
+            message: "Initial funds transaction completed successfully",
+            transaction
+        })
+
+    }catch(error){
+        console.error("Error creating transaction:",error);
+        res.status(500).json({
+            message:"An error occurred while doing the transaction.",
+            error:error.message
+        });
+    }
+}
 module.exports={
-    createTransaction
+    createTransaction,
+    createInitialTransaction
 }

@@ -1,11 +1,10 @@
-const {Router}=require('express');
+const express=require('express');
 const authMiddleware=require('../middleware/auth.middleware');
 const transactionController=require('../controllers/transcation.controller');
-const transactionRoutes=Router();
+const router=express.Router();
 
-// post api/transactions
+router.post('/',authMiddleware.authMiddleware,transactionController.createTransaction);
 
+router.post("/system/initial-funds", authMiddleware.authSystemUserMiddleware, transactionController.createInitialTransaction);
 
-transactionRoutes.post('/',authMiddleware.authMiddleware,transactionController.createTransaction)
-
-module.exports=transactionRoutes;
+module.exports=router;
