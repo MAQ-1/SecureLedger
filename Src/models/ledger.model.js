@@ -38,12 +38,16 @@ function preventLedgerModification(){
 
 }
 
+// Glti se bhi change na honde dungaa
 ledgerSchema.pre('findOneAndUpdate',preventLedgerModification);
 ledgerSchema.pre('updateOne',preventLedgerModification);
 ledgerSchema.pre('deleteOne',preventLedgerModification);
 ledgerSchema.pre('findOneAndDelete',preventLedgerModification);
 ledgerSchema.pre('findOneAndRemove',preventLedgerModification);
 ledgerSchema.pre('deleteMany',preventLedgerModification);
+ledgerSchema.pre('remove',preventLedgerModification);
+ledgerSchema.pre('updateMany',preventLedgerModification);
+ledgerSchema.pre('replaceOne',preventLedgerModification);
 
 const ledgerModel=mongoose.model('ledger',ledgerSchema);
 

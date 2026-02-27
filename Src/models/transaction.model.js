@@ -1,7 +1,7 @@
-const express=require('express');
+const mongoose=require('mongoose');
 
 
-const trnasactionSchema=new mongoose.Schema({
+const transactionSchema=new mongoose.Schema({
       
     fromAccount:{
         type:mongoose.Schema.Types.ObjectId,
@@ -41,6 +41,6 @@ const trnasactionSchema=new mongoose.Schema({
 
     });
 
-const transactionModel=mongoose.model('transaction',trnasactionSchema);
+const transactionModel=mongoose.model('transaction',transactionSchema);
 
 module.exports=transactionModel;
